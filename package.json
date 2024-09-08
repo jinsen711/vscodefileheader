@@ -1,174 +1,173 @@
 {
-	"name": "vscodefileheader",
-	"displayName": "VSCodeFileHeader",
-	"description": "header comment",
-	"version": "0.10.4",
-	"publisher": "jankincai",
-	"author": {
-		"name": "JanKinCai",
-		"email": "jankincai12@gmail.com",
-		"url": "https://github.com/caizhengxin/"
-	},
-	"homepage": "https://github.com/caizhengxin/vscodefileheader",
-	"license": "BSD-3-Clause",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/caizhengxin/vscodefileheader"
-	},
-	"bugs": {
-		"url": "https://github.com/caizhengxin/vscodefileheader/issues",
-		"email": "jankincai12@gmail.com"
-	},
-	"icon": "images/python.png",
-	"engines": {
-		"vscode": "^1.39.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"keywords": [
-		"vscode-fileheader",
-		"vscodefileheader",
-		"fileheader",
-		"annotation",
-		"comment",
-		"vscode comment",
-		"vscode annotation",
-		"header",
-		"body",
-		"language"
-	],
-	"activationEvents": [
-		"*",
-		"onCommand:extension.fileheader"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"configuration": {
-			"type": "object",
-			"title": "File Header",
-			"properties": {
-				"fileheader.author": {
-					"type": "string",
-					"default": "Your name",
-					"description": "Your name"
-				},
-				"fileheader.dateformat": {
-					"type": "string",
-					"default": "YYYY-MM-DD HH:mm:ss",
-					"description": "Datetime format"
-				},
-				"fileheader.other_config": {
-					"type": "object",
-					"default": {},
-					"description": "Other header config"
-				},
-				"fileheader.open": {
-					"type": "boolean",
-					"default": false,
-					"description": "Open file insert template"
-				},
-				"fileheader.save": {
-					"type": "boolean",
-					"default": true,
-					"description": "Save file insert template"
-				},
-				"fileheader.header_max_line": {
-					"type": "number",
-					"default": 10,
-					"description": "Search the max line of header comments"
-				},
-				"fileheader.is_header_exists": {
-					"type": "string",
-					"default": null,
-					"description": "Determine whether the header comment is inserted"
-				},
-				"fileheader.update_last_modified_author_flags": {
-					"type": "string",
-					"default": "@Last Modified by:",
-					"description": "Determine whether the header comment is inserted"
-				},
-				"fileheader.update_last_modified_time_flags": {
-					"type": "string",
-					"default": "@Last Modified time:",
-					"description": "Determine whether the header comment is inserted"
-				},
-				"fileheader.body": {
-					"type": "boolean",
-					"default": false,
-					"description": "Insert template body"
-				},
-				"fileheader.ignore": {
-					"type": "array",
-					"default": [
-						".tmpl"
-					],
-					"description": "Ignore file"
-				},
-				"fileheader.custom_template_path": {
-					"type": "string",
-					"default": null,
-					"description": "Custom template path"
-				},
-				"fileheader.file_suffix_mapping": {
-					"type": "object",
-					"default": {},
-					"description": "File suffix mapping"
-				},
-				"fileheader.remote": {
-					"type": "string",
-					"default": null,
-					"description": "Sync remote template"
-				}
-			}
-		},
-		"commands": [
-			{
-				"command": "extension.fileheader",
-				"title": "File Header: Add header comment"
-			},
-			{
-				"command": "extension.synctemplate",
-				"title": "File Header: Sync template"
-			},
-			{
-				"command": "extension.opentemplate",
-				"title": "File Header: Open template"
-			},
-			{
-				"command": "extension.createtemplate",
-				"title": "File Header: Create template"
-			}
-		],
-		"keybindings": [
-			{
-				"command": "extension.fileheader",
-				"key": "ctrl+alt+i",
-				"mac": "ctrl+cmd+i",
-				"when": "editorTextFocus"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^5.2.6",
-		"@types/node": "^10.12.21",
-		"@types/vscode": "^1.39.0",
-		"glob": "^7.1.4",
-		"mocha": "^6.1.4",
-		"typescript": "^3.3.1",
-		"tslint": "^5.12.1",
-		"vscode-test": "^1.2.0"
-	},
-	"dependencies": {
-		"art-template": "^4.13.2",
-		"moment": "^2.24.0"
-	}
+  "name": "vscodefileheader",
+  "displayName": "VSCodeFileHeader",
+  "description": "header comment",
+  "version": "0.10.4",
+  "publisher": "jankincai",
+  "author": {
+    "name": "JanKinCai",
+    "email": "jankincai12@gmail.com",
+    "url": "https://github.com/caizhengxin/"
+  },
+  "homepage": "https://github.com/caizhengxin/vscodefileheader",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caizhengxin/vscodefileheader"
+  },
+  "bugs": {
+    "url": "https://github.com/caizhengxin/vscodefileheader/issues",
+    "email": "jankincai12@gmail.com"
+  },
+  "icon": "images/python.png",
+  "engines": {
+    "vscode": "^1.39.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "vscode-fileheader",
+    "vscodefileheader",
+    "fileheader",
+    "annotation",
+    "comment",
+    "vscode comment",
+    "vscode annotation",
+    "header",
+    "body",
+    "language"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "File Header",
+      "properties": {
+        "fileheader.author": {
+          "type": "string",
+          "default": "Your name",
+          "description": "Your name"
+        },
+        "fileheader.dateformat": {
+          "type": "string",
+          "default": "YYYY-MM-DD HH:mm:ss",
+          "description": "Datetime format"
+        },
+        "fileheader.other_config": {
+          "type": "object",
+          "default": {},
+          "description": "Other header config"
+        },
+        "fileheader.open": {
+          "type": "boolean",
+          "default": false,
+          "description": "Open file insert template"
+        },
+        "fileheader.save": {
+          "type": "boolean",
+          "default": true,
+          "description": "Save file insert template"
+        },
+        "fileheader.header_max_line": {
+          "type": "number",
+          "default": 10,
+          "description": "Search the max line of header comments"
+        },
+        "fileheader.is_header_exists": {
+          "type": "string",
+          "default": null,
+          "description": "Determine whether the header comment is inserted"
+        },
+        "fileheader.update_last_modified_author_flags": {
+          "type": "string",
+          "default": "@Last Modified by:",
+          "description": "Determine whether the header comment is inserted"
+        },
+        "fileheader.update_last_modified_time_flags": {
+          "type": "string",
+          "default": "@Last Modified time:",
+          "description": "Determine whether the header comment is inserted"
+        },
+        "fileheader.body": {
+          "type": "boolean",
+          "default": false,
+          "description": "Insert template body"
+        },
+        "fileheader.ignore": {
+          "type": "array",
+          "default": [
+            ".tmpl"
+          ],
+          "description": "Ignore file"
+        },
+        "fileheader.custom_template_path": {
+          "type": "string",
+          "default": null,
+          "description": "Custom template path"
+        },
+        "fileheader.file_suffix_mapping": {
+          "type": "object",
+          "default": {},
+          "description": "File suffix mapping"
+        },
+        "fileheader.remote": {
+          "type": "string",
+          "default": null,
+          "description": "Sync remote template"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "extension.fileheader",
+        "title": "File Header: Add header comment"
+      },
+      {
+        "command": "extension.synctemplate",
+        "title": "File Header: Sync template"
+      },
+      {
+        "command": "extension.opentemplate",
+        "title": "File Header: Open template"
+      },
+      {
+        "command": "extension.createtemplate",
+        "title": "File Header: Create template"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.fileheader",
+        "key": "ctrl+alt+i",
+        "mac": "ctrl+cmd+i",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^10.12.21",
+    "@types/vscode": "^1.39.0",
+    "glob": "^7.1.4",
+    "mocha": "^6.1.4",
+    "typescript": "^3.3.1",
+    "tslint": "^5.12.1",
+    "vscode-test": "^1.2.0"
+  },
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "moment": "^2.24.0"
+  }
 }

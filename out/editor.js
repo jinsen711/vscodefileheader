@@ -1,14 +1,16 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.editorObject = void 0;
 /**
  * @Author: JanKinCai
  * @Date:   2021-04-24 16:57:18
  * @Last Modified by:   JanKinCai
  * @Last Modified time: 2021-04-25 01:40:20
  */
-import * as path from "path";
-import * as vscode from "vscode";
-import * as moment from "moment";
-import * as fs from "fs";
-
+const path = require('path');
+const vscode = require('vscode');
+const moment = require('moment');
+const fs = require('fs');
 /*
  * root
  * dir
@@ -16,40 +18,28 @@ import * as fs from "fs";
  * ext
  * name
  */
-
 class editorObject {
-  editor: vscode.TextEditor;
-  config: vscode.WorkspaceConfiguration;
-  pathobj: any;
-  datetimeFormat: string;
-
-  constructor(editor: any, config: any) {
+  constructor(editor, config) {
     this.editor = editor;
     this.pathobj = undefined;
-
     if (this.editor) {
       this.pathobj = path.parse(this.editor.document.fileName);
     }
-    this.config = config || vscode.workspace.getConfiguration("fileheader");
+    this.config = config || vscode.workspace.getConfiguration('fileheader');
     this.datetimeFormat = config.dateformat;
   }
-
-  isEditor(): boolean {
+  isEditor() {
     return this.editor === undefined;
   }
-
-  isSuffix(s: any): boolean {
+  isSuffix(s) {
     return this.pathobj.ext.lastIndexOf(s) !== -1;
   }
-
-  isSuffixList(s: string[]): boolean {
+  isSuffixList(s) {
     return s.indexOf(this.pathobj.ext) !== -1;
   }
-
-  isIgnore(s: string[]): boolean {
+  isIgnore(s) {
     for (let ige of s) {
-      let reg: any = new RegExp(ige.replace(".", "\\.").replace("*", ".*"));
-
+      let reg = new RegExp(ige.replace('.', '\\.').replace('*', '.*'));
       if (
         reg.test(this.pathobj.base) ||
         reg.test(path.join(this.pathobj.dir, this.pathobj.base))
@@ -57,47 +47,34 @@ class editorObject {
         return true;
       }
     }
-
     return false;
   }
-
-  getDateTime(): string {
+  getDateTime() {
     return moment().format(this.datetimeFormat);
   }
-
-  getFileBirthDateTime(): string {
-    let fileStat: any = fs.statSync(this.editor.document.fileName);
-    let birthTime: string = fileStat.birthtime;
-
-    if (birthTime.toString().startsWith("1970")) {
+  getFileBirthDateTime() {
+    let fileStat = fs.statSync(this.editor.document.fileName);
+    let birthTime = fileStat.birthtime;
+    if (birthTime.toString().startsWith('1970')) {
       birthTime = fileStat.ctime; // When birthtime is not available
     }
-
     return moment(birthTime).format(this.datetimeFormat);
   }
-
-  getSuffix(): string {
+  getSuffix() {
     return this.pathobj.ext.toLowerCase() || this.pathobj.name.toLowerCase();
   }
-
-  getFileName(): string {
+  getFileName() {
     return this.pathobj.name.toLowerCase();
   }
-
-  getMaxHeaderLine(): number {
+  getMaxHeaderLine() {
     return Math.min(
       this.editor.document.lineCount,
       this.config.header_max_line
     );
   }
-
-  findStringLine(
-    text: string,
-    max_line: number = this.config.header_max_line
-  ): number {
-    let lineCount: number = Math.min(max_line, this.editor.document.lineCount);
-    let i: number = 0;
-
+  findStringLine(text, max_line = this.config.header_max_line) {
+    let lineCount = Math.min(max_line, this.editor.document.lineCount);
+    let i = 0;
     for (i = 0; i <= lineCount - 1; i++) {
       if (
         this.editor.document
@@ -108,28 +85,23 @@ class editorObject {
         return i;
       }
     }
-
     return -1;
   }
-
-  deleteEditorComment(text: string, max_line: number): void {
-    let line: number = this.findStringLine(text, max_line);
-
+  deleteEditorComment(text, max_line) {
+    let line = this.findStringLine(text, max_line);
     if (line !== -1) {
-      this.editor.edit((editobj: any) => {
+      this.editor.edit(editobj => {
         editobj.delete(new vscode.Range(line, 0, line, text.length));
       });
     }
   }
-
-  insertEditorComment(text: string): void {
-    let line: number = this.editor.document.lineCount + 1;
-    this.editor.edit((editobj: any) => {
+  insertEditorComment(text) {
+    let line = this.editor.document.lineCount + 1;
+    this.editor.edit(editobj => {
       editobj.delete(new vscode.Range(line, 0, line, text.length));
     });
   }
-
-  isHeaderExists(): boolean {
+  isHeaderExists() {
     if (
       this.config.is_header_exists &&
       this.findStringLine(
@@ -139,13 +111,11 @@ class editorObject {
     ) {
       return true;
     }
-
-    if (this.findStringLine("@Author:", this.getMaxHeaderLine()) !== -1) {
+    if (this.findStringLine('@Author:', this.getMaxHeaderLine()) !== -1) {
       return true;
     }
-
     return false;
   }
 }
-
-export { editorObject };
+exports.editorObject = editorObject;
+//# sourceMappingURL=editor.js.map
