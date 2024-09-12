@@ -4,11 +4,11 @@
  * @Last Modified by:   JanKinCai
  * @Last Modified time: 2021-04-25 01:31:07
  */
-import * as child_process from "child_process";
-import * as vscode from "vscode";
-import * as path from "path";
-import * as fs from "fs";
-import * as template from "./template";
+import * as child_process from 'child_process';
+import * as vscode from 'vscode';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as template from './template';
 
 function createTemplateCommand(config: any, file_suffix_mapping: any): void {
   let editor: any = vscode.window.activeTextEditor;
@@ -19,18 +19,18 @@ function createTemplateCommand(config: any, file_suffix_mapping: any): void {
       .showInputBox({
         ignoreFocusOut: true,
         password: false,
-        prompt: "Please type template name",
+        prompt: 'Please type template name',
       })
-      .then((tmplname) => {
-        if (tmplname === undefined || tmplname.trim() === "") {
-          vscode.window.showInformationMessage("Please type template name");
+      .then(tmplname => {
+        if (tmplname === undefined || tmplname.trim() === '') {
+          vscode.window.showInformationMessage('Please type template name');
         } else {
           tmplobj.create(tmplname);
         }
       });
   } else {
     vscode.window.showInformationMessage(
-      "Please set vscodefileheader custome template path."
+      'Please set vscodefileheader custome template path.'
     );
   }
 }
@@ -43,7 +43,7 @@ function openTemplateCommand(config: any, file_suffix_mapping: any): void {
 
     tmplobj.open();
   } else {
-    vscode.window.showInformationMessage("No active window");
+    vscode.window.showInformationMessage('No active window');
   }
 }
 
@@ -69,13 +69,13 @@ function syncTemplateCommand(config: any, file_suffix_mapping: any): void {
     /* Read file_suffix_map.json or file_suffix_mapping.json */
     let file_suffix_mapping_path: string = path.join(
       config.custom_template_path,
-      "file_suffix_map.json"
+      'file_suffix_map.json'
     );
 
     if (!fs.existsSync(file_suffix_mapping_path)) {
       file_suffix_mapping_path = path.join(
         config.custom_template_path,
-        "file_suffix_mapping.json"
+        'file_suffix_mapping.json'
       );
     }
 
@@ -86,14 +86,16 @@ function syncTemplateCommand(config: any, file_suffix_mapping: any): void {
 }
 
 function updateTemplateCommand(config: any, file_suffix_mapping: any): void {
+  // 获取当前活动窗口的编辑器
   let editor: any = vscode.window.activeTextEditor;
 
   if (editor) {
+    // 创建 template 对象
     let tmplobj = new template.Template(editor, config, file_suffix_mapping);
 
     tmplobj.update();
   } else {
-    vscode.window.showInformationMessage("No active window");
+    vscode.window.showInformationMessage('No active window');
   }
 }
 
@@ -119,7 +121,7 @@ function insertTemplateCommand(config: any, file_suffix_mapping: any): void {
 
     tmplobj.insert();
   } else {
-    vscode.window.showInformationMessage("No active window");
+    vscode.window.showInformationMessage('No active window');
   }
 }
 
